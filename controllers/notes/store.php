@@ -11,7 +11,7 @@ $db = App::container()->resolve(Database::class);
 
 $errors = [];
 
-$lastId = $db->query("SELECT TOP 1 id FROM notes ORDER BY id DESC")->findOrFail();
+$lastId = $db->query("SELECT TOP 1 id FROM notes ORDER BY id DESC")->find() ?? 201;
 
 if (Validator::string($_POST['body'], 1, 1000)) {
     $errors['body'] = 'A body of no more than 1,000 characters is required';
